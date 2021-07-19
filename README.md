@@ -1,8 +1,8 @@
 # bbg-test
 
-## AWS EC2 Console Output
+## CLI OUTPUT
 ![](https://github.com/vvemu-eci/bbg-test/raw/main/ip-output.png)
 
 
-## CLI OUTPUT
+## AWS EC2 Console Output
 ![](https://github.com/vvemu-eci/bbg-test/raw/main/aws-output.png)
