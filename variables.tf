@@ -7,15 +7,15 @@ variable subnet_cidr {
 }
 
 variable region {
- default="us-west-2"
+ default="us-east-1"
 }
 
 variable availability_zone {
-  default = "us-west-2a"
+  default = "us-east-1a"
 }
 
 variable ami {
-  default = "ami-0fb83677"
+  default = "ami-0dc2d3e4c0f9ebd18"
 }
 
 variable flavor {
@@ -23,5 +23,5 @@ variable flavor {
 }
 
 variable keyname {
-  default = "079740061629"
+  default = "cloudgem.pem"
 }
