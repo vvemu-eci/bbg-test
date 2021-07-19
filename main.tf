@@ -1,31 +1,18 @@
 provider "aws" {
-  region  = "${var.region}"
+  region = "us-east-1"
 }
 
-resource "aws_vpc" "bbg_vpc" {
-  cidr_block           = "${var.network_cidr}"
-  enable_dns_hostnames = true
-  tags = {
-    Name = "BBG VPC"
-  }
+module "network" {
+  source = "./modules/network"
+  availability_zone = "us-east-1a"
+  vpc-name = "BBG-VPC"
+  vpc-subnet-name= "BBG Subnet 1"
 }
 
-resource "aws_subnet" "bbg_subnet" {
-  vpc_id            = "${aws_vpc.bbg_vpc.id}"
-  cidr_block        = "${var.subnet_cidr}"
-  availability_zone = "${var.availability_zone}"
-
-  tags = {
-    Name = "BBG Subnet 1"
-  }
-}
-
-resource "aws_instance" "bbg-and-eci-rock-CHANDRA" {
-  ami           = "${var.ami}"
-  instance_type = "${var.flavor}"
-  key_name = "${var.keyname}"
-  subnet_id     = "${aws_subnet.bbg_subnet.id}"
-  tags = {
-    Name = "bbg-and-eci-rock-CHANDRA"
-  }
+module "compute" {
+  source = "./modules/compute"
+  ami = "ami-0dc2d3e4c0f9ebd18"
+  flavor = "t2.micro"
+  ec2-name = "bbg-and-eci-rock-CHANDRA"
+  subnet_id = "${module.network.subnet_id}" 
 }
